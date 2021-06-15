@@ -1,0 +1,96 @@
+body {
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 100px;
+  box-sizing: border-box;
+  color: #000;
+  background-color: #757f9a;
+  background-image: linear-gradient(147deg, #757f9a 0%, #d7dde8 100%);
+}
+
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+#upload {
+  opacity: 0;
+}
+
+#upload-label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+}
+
+.image-area {
+  border: 2px dashed rgba(255, 255, 255, 0.7);
+  padding: 1rem;
+  position: relative;
+}
+
+.image-area::before {
+  /* content: "Uploaded image result"; */
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem;
+  z-index: 1;
+}
+
+.image-area img {
+  z-index: 2;
+  position: relative;
+}
+
+/* Reduced Image */
+
+.reduced-image-area {
+  border: 2px dashed rgba(255, 255, 255, 0.7);
+  padding: 0.7rem;
+  position: relative;
+}
+
+.reduced-image-area::before {
+  /* content: "Reduced image result"; */
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem;
+  z-index: 1;
+}
+
+.reduced-image-area img {
+  z-index: 2;
+  position: relative;
+}
+
+.wrapper {
+  max-width: 960px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 100px;
+  padding-top: 50px;
+}
+
+.responsive {
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
