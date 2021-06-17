@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -10,12 +10,6 @@ import ConvertAction from "./components/ConvertAction";
 function App() {
   const [images, setImages] = useState([]);
   const [converted, setConverted] = useState([]);
-
-  console.log("images:::", images);
-
-  useEffect(() => {
-    // console.log(converted);
-  }, [converted]);
 
   return (
     <div id="top" className="container mt-5">

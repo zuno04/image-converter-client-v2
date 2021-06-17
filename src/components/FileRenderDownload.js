@@ -1,6 +1,12 @@
 import React from "react";
 
+import { generateZip } from "../libraries/jzip";
+
 function FileRenderDownload({ converted }) {
+  const downloadImagesZip = () => {
+    generateZip(converted);
+  };
+
   return (
     <div className="col-md-5">
       {/* Converted image area */}
@@ -19,14 +25,18 @@ function FileRenderDownload({ converted }) {
           ))}
         </ul>
       </div>
-      <a
+      <button
         href="#download"
         id="download_result"
-        className="btn btn-primary mt-5"
+        className={`btn btn-primary mt-5 ${
+          converted.length === 0 ? "disabled" : ""
+        }`}
         title="Download converted image"
+        disabled={converted.length === 0}
+        onClick={() => downloadImagesZip()}
       >
         Download All
-      </a>
+      </button>
     </div>
   );
 }

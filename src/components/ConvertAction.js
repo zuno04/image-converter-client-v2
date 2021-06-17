@@ -56,6 +56,7 @@ const ConvertAction = ({ images, setConverted }) => {
             onClick={(e) => upload()}
             type="button"
             className="btn btn-info"
+            disabled={images.length === 0}
           >
             Convert
           </button>
