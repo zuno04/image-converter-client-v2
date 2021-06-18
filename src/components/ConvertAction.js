@@ -9,7 +9,7 @@ const ConvertAction = ({ images, setConverted }) => {
   const upload = async () => {
     setProcessing(true);
 
-    const url = "http://localhost:5000/api/reduce_image/";
+    const url = "https://kyyc6r.deta.dev/api/reduce_image/";
 
     let data = new FormData();
 
@@ -30,7 +30,7 @@ const ConvertAction = ({ images, setConverted }) => {
       },
     })
       .then((response) => {
-        const result_img_url = "http://localhost:5000/api/images/";
+        const result_img_url = "https://kyyc6r.deta.dev/api/images/";
 
         axios
           .get(result_img_url, {

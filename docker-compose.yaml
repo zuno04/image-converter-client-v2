@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+  api:
+    hostname: image-converter-api
+    image: image-converter-api-v2:latest
+    ports:
+      - "5000:5000"
+    networks:
+      iconvertnet:
+        ipv4_address: 172.16.238.01
+  client:
+    hostname: image-converter-client
+    image: image-converter-client-v2/react-app:latest #docker run -d -it  -p 82:80/tcp --name image-converter image-converter-client-v2/react-app:latest
+    ports:
+      - "82:80"
+    networks:
+      iconvertnet:
+        ipv4_address: 172.16.238.02
+
+networks:
+  iconvertnet:
+    ipam:
+      driver: bridge
+      config:
+        - subnet: "172.16.238.0/24"
