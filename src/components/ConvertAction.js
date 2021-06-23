@@ -1,51 +1,60 @@
 import React, { useState } from "react";
-import axios from "axios";
+import imageCompression from "browser-image-compression";
 
 import loader from "./loader.gif";
 
 const ConvertAction = ({ images, setConverted }) => {
   const [processing, setProcessing] = useState(false);
+
+  const convertBlobToBase64 = (blob) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onerror = reject;
+
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+
+      reader.readAsDataURL(blob);
+    });
+
+  const convertImage = async (imageFiles) => {
+    let compressedImagesFiles = [];
+
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+    };
+
+    try {
+      for (let i = 0; i < imageFiles.length; i++) {
+        const compressedFile = await imageCompression(imageFiles[i], options);
+
+        const base64Image = await convertBlobToBase64(compressedFile);
+
+        compressedImagesFiles.push({
+          image_name: "Reduced_" + compressedFile.name,
+          image_data: base64Image,
+        });
+      }
+
+      return compressedImagesFiles;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //
   const upload = async () => {
     setProcessing(true);
 
-    const url = "https://kyyc6r.deta.dev/api/reduce_image/";
-
-    let data = new FormData();
-
-    for (let i = 0; i < images.length; i++) {
-      data.append("files", images[i]);
-    }
-
-    axios({
-      method: "post",
-      url,
-      data,
-      headers: {
-        accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Accept-Language": "en-US,en;q=0.8",
-        "Content-Type": `multipart/form-data; boundary=${data._boundary}`,
-        // "Content-Type": "multipart/form-data",
-      },
-    })
-      .then((response) => {
-        const result_img_url = "https://kyyc6r.deta.dev/api/images/";
-
-        axios
-          .get(result_img_url, {
-            params: {
-              filenames: JSON.stringify(response.data["filenames"]),
-            },
-          })
-          .then((res) => {
-            setConverted(res.data.converted_images);
-            setProcessing(false);
-          });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    convertImage(images).then((res) => {
+      // console.log(res[0].image_data);
+      setConverted(res);
+      setProcessing(false);
+    });
   };
 
   return (

@@ -12,9 +12,18 @@ export const generateZip = (arr) => {
 
   if (arr.length) {
     for (const element of arr) {
-      zip.file(element.image_name, atob(element.image_data), {
-        binary: true,
-      });
+      zip.file(
+        element.image_name,
+        atob(
+          element.image_data.replace(
+            /^data:image\/(png|jpeg|jpg|gif);base64,/,
+            ""
+          )
+        ),
+        {
+          binary: true,
+        }
+      );
     }
 
     arr = [];

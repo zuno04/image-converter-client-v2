@@ -16,7 +16,7 @@ function FileRenderDownload({ converted }) {
             <li key={i}>
               <a
                 download={image.image_name}
-                href={`data:image/jpg;base64,${image.image_data}`}
+                href={image.image_data}
                 title="Download converted image"
               >
                 {image.image_name}
