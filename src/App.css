@@ -2,90 +2,164 @@ body {
   min-height: 100vh;
   position: relative;
   margin: 0;
-  padding-bottom: 100px;
+  padding-bottom: 100px; /* Adjust if footer height changes */
   box-sizing: border-box;
-  color: #000;
-  background-color: #757f9a;
-  background-image: linear-gradient(147deg, #757f9a 0%, #d7dde8 100%);
+  color: #212529; /* Dark gray for text */
+  background-color: #f8f9fa; /* Light gray background */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
+
+/* Header styles */
+header {
+  background-color: #007bff; /* Primary blue */
+  color: #ffffff; /* White text */
+  padding: 2rem 0;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 300; /* Lighter font weight for modern feel */
+}
+
+header p {
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
 
 /*
 *
 * ==========================================
-* CUSTOM UTIL CLASSES
+* CUSTOM UTIL CLASSES & COMPONENT STYLES
 * ==========================================
 *
 */
+
+/* FileUpload.js specific styles */
+.file-upload-container {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
 #upload {
-  opacity: 0;
+  opacity: 0; /* Keep this to hide the default input */
+  position: absolute; /* Keep this to hide the default input */
+  z-index: -1; /* Keep this to hide the default input */
 }
 
-#upload-label {
-  position: absolute;
-  top: 50%;
-  left: 1rem;
-  transform: translateY(-50%);
+/* Custom button for file input */
+.custom-file-upload-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #ffffff;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.image-area {
-  border: 2px dashed rgba(255, 255, 255, 0.7);
-  padding: 1rem;
-  position: relative;
+.custom-file-upload-button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
 }
 
-.image-area::before {
-  /* content: "Uploaded image result"; */
-  color: #fff;
-  font-weight: bold;
-  text-transform: uppercase;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 0.8rem;
-  z-index: 1;
+.custom-file-upload-button i {
+  margin-right: 0.5rem;
 }
 
-.image-area img {
-  z-index: 2;
-  position: relative;
+
+/* Styling for the list of uploaded/converted files */
+.file-list-area {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-top: 1.5rem;
+  min-height: 150px; /* Give some default height */
 }
 
-/* Reduced Image */
-
-.reduced-image-area {
-  border: 2px dashed rgba(255, 255, 255, 0.7);
-  padding: 0.7rem;
-  position: relative;
+.file-list-area h5 {
+  color: #007bff;
+  margin-bottom: 1rem;
+  font-weight: 500;
 }
 
-.reduced-image-area::before {
-  /* content: "Reduced image result"; */
-  color: #fff;
-  font-weight: bold;
-  text-transform: uppercase;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 0.8rem;
-  z-index: 1;
+.file-list-area ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.reduced-image-area img {
-  z-index: 2;
-  position: relative;
+.file-list-area li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0.25rem;
+  border-bottom: 1px solid #e9ecef; /* Light border for items */
+  font-size: 0.95rem;
 }
 
-.wrapper {
+.file-list-area li:last-child {
+  border-bottom: none;
+}
+
+.file-list-area .file-name {
+  color: #212529;
+  word-break: break-all; /* Prevent long names from breaking layout */
+  margin-right: 10px;
+}
+
+.file-list-area .action-icon {
+  cursor: pointer;
+  color: #dc3545; /* Bootstrap danger red for delete */
+  transition: color 0.15s ease-in-out;
+}
+
+.file-list-area .action-icon:hover {
+  color: #a71d2a;
+}
+
+.file-list-area a, .file-list-area a:hover {
+  color: #0056b3; /* Darker blue for links, consistent with hover */
+  text-decoration: none;
+}
+
+/* Download button styling */
+.download-all-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.download-all-btn.disabled, .download-all-btn:disabled {
+  background-color: #6c757d; /* Secondary gray when disabled */
+  border-color: #6c757d;
+}
+
+
+/* General layout and spacing */
+.wrapper { /* This class seems unused, but keeping it for now */
   max-width: 960px;
 }
 
 footer {
   position: absolute;
   bottom: 0;
-  height: 100px;
-  padding-top: 50px;
+  width: 100%; /* Make footer full width */
+  height: 80px; /* Adjusted height */
+  padding-top: 30px; /* Adjusted padding */
+  text-align: center;
+  color: #6c757d; /* Secondary gray for footer text */
+  font-size: 0.9rem;
 }
 
 .responsive {
@@ -93,4 +167,420 @@ footer {
   height: auto;
   margin-left: auto;
   margin-right: auto;
+  display: block; /* Ensure responsive images are block elements */
+}
+
+/* Utility for centering text, if needed elsewhere */
+.text-center {
+  text-align: center !important; /* Ensure Bootstrap override if necessary */
+}
+
+/* Remove default browser list styling that might interfere */
+ul, ol {
+  margin-top: 0;
+  margin-bottom: 1rem; /* Default Bootstrap margin */
+}
+
+/* Ensure container has some top margin if not already handled by mt-5 */
+.container {
+  padding-top: 1rem; /* Add some space at the top */
+}
+
+/* ==========================================
+ * RESPONSIVENESS & MEDIA QUERIES
+ * ========================================== */
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  header h1 {
+    font-size: 2.25rem; /* Slightly smaller h1 for tablets */
+  }
+
+  header p {
+    font-size: 1rem; /* Slightly smaller paragraph for tablets */
+  }
+
+  /* Ensure ConvertAction button is centered and doesn't look out of place when stacked */
+  .col-lg-2.col-md-12.text-center .btn { /* Targeting the convert button more specifically */
+    width: auto; /* Allow button to size naturally */
+    max-width: 200px; /* Prevent button from becoming overly wide */
+    margin-top: 1rem; /* Add some space above if needed when stacked */
+    margin-bottom: 1rem; /* Add some space below if needed when stacked */
+  }
+}
+
+/* ==========================================
+ * PREFERENCES EDITOR STYLES
+ * ========================================== */
+.preferences-editor-container.card { /* Targeting the card specifically */
+  border: 1px solid #dee2e6; /* Standard Bootstrap card border */
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Standard Bootstrap card shadow */
+}
+
+.preferences-editor-container .card-title {
+  color: #007bff; /* Primary color for the title */
+}
+
+.preferences-editor-container .form-group label {
+  font-weight: 500; /* Slightly bolder labels */
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem; /* Smaller margin below label */
+}
+
+.preferences-editor-container .form-control-sm {
+  font-size: 0.875rem; /* Ensure select and other inputs are consistently sized */
+  padding: 0.25rem 0.5rem;
+  height: calc(1.5em + 0.5rem + 2px); /* Standard sm height */
+}
+
+.preferences-editor-container .form-check-label {
+  font-size: 0.875rem; /* Match other small form elements */
+  margin-left: 0.25rem; /* Space between checkbox and label text */
+}
+
+.preferences-editor-container .form-check-input {
+  margin-top: 0.2rem; /* Align checkbox better with label if needed */
+}
+
+.preferences-editor-container .btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* ==========================================
+ * IMAGE PREVIEW MODAL STYLES
+ * ========================================== */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75); /* Slightly darker for better focus */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050; /* Ensure it's above other content, Bootstrap's modals are often 1050+ */
+  padding: 1rem; /* Add some padding for smaller screens so modal content doesn't touch edges */
+  box-sizing: border-box;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 0.3rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  position: relative;
+  max-width: 800px; /* Max width for the modal */
+  width: auto; /* Auto width based on content, up to max-width */
+  max-height: 90vh; /* Max height relative to viewport */
+  overflow-y: auto; /* Allow vertical scrolling if content (image + name) exceeds max-height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-image {
+  display: block;
+  max-width: 100%; /* Image will be constrained by modal-content padding */
+  max-height: 75vh; /* Max height for the image itself */
+  object-fit: contain; /* Show whole image, scaled down if needed, no cropping */
+  border-radius: 0.25rem; /* Optional: slight rounding for the image */
+}
+
+.modal-image-name {
+  text-align: center;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #495057; /* Bootstrap muted text color */
+  word-break: break-all; /* In case of very long names */
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  font-size: 2rem; /* Larger for easier clicking */
+  font-weight: bold;
+  color: #6c757d; /* Secondary gray */
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1; /* Ensure X is vertically centered if padding/height is added */
+  padding: 0; /* Remove any default padding */
+}
+
+.modal-close-btn:hover {
+  color: #212529; /* Darker on hover */
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  header {
+    padding: 1.5rem 0; /* Reduce header padding */
+  }
+
+  header h1 {
+    font-size: 2rem; /* Smaller h1 for small devices */
+  }
+
+  header p {
+    font-size: 0.95rem; /* Smaller paragraph for small devices */
+  }
+
+  .file-upload-container,
+  .file-list-area {
+    padding: 1.5rem; /* Reduce padding for these containers */
+  }
+
+  .custom-file-upload-button,
+  .download-all-btn {
+    padding: 0.6rem 1.2rem; /* Adjust button padding */
+    font-size: 0.9rem; /* Adjust button font size */
+  }
+
+  .file-list-area h5 {
+    font-size: 1.1rem; /* Adjust heading size in file list */
+  }
+
+  .file-list-area li {
+    padding: 0.6rem 0.15rem; /* Adjust list item padding */
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .container {
+    margin-top: 0.5rem !important; /* Reduce top margin for the main container */
+    padding-top: 0.5rem; /* Reduce top padding for the main container */
+  }
+  .row {
+    margin-top: 0.5rem !important; /* Reduce top margin for rows */
+  }
+  
+  header {
+    padding: 1rem 0.5rem; /* Further reduce header padding */
+    margin-bottom: 1rem !important; /* Add some margin below header */
+  }
+
+  header h1 {
+    font-size: 1.75rem; /* Even smaller h1 */
+  }
+
+  header p {
+    font-size: 0.9rem; /* Even smaller paragraph */
+  }
+
+  .file-upload-container,
+  .file-list-area {
+    padding: 1rem; /* Further reduce padding */
+    margin-bottom: 1rem !important; /* Ensure spacing when stacked */
+  }
+  
+  /* Ensure components in columns have some bottom margin when stacked */
+  .col-lg-5.col-md-12, .col-lg-2.col-md-12 {
+    margin-bottom: 1rem !important; /* Override default mb-3 if needed for tighter spacing */
+  }
+
+
+  .custom-file-upload-button,
+  .download-all-btn {
+    width: 100%; /* Make buttons full width for easier tapping */
+    padding: 0.75rem 1rem; /* Adjust padding for full width */
+    font-size: 0.95rem; /* Slightly larger font for full-width buttons */
+  }
+
+  .file-list-area ul {
+    padding-left: 0.5rem; /* Add a little padding if content is too close to edge */
+  }
+
+  .file-list-area li .file-name {
+    max-width: 80%; /* Prevent file name from pushing icon too far */
+  }
+}
+
+/* ==========================================
+ * ERROR MESSAGE STYLES
+ * ========================================== */
+.error-message {
+  color: #721c24; /* Dark red text */
+  background-color: #f8d7da; /* Light pink background */
+  border: 1px solid #f5c6cb; /* Reddish border */
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  text-align: center;
+  width: 100%; /* Make it take the full width of its container */
+  max-width: 350px; /* Max width to prevent it from being too wide on larger screens if container is wide */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================
+ * LOADING INDICATOR STYLES
+ * ========================================== */
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  min-height: 100px; /* Give it some min height to avoid layout jumps */
+}
+
+.loading-indicator img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 0.75rem;
+}
+
+.loading-indicator p {
+  color: #007bff; /* Primary blue, consistent with theme */
+  font-weight: 500;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Convert Button - if specific styling needed beyond .btn .btn-info */
+.btn-convert {
+  /* Example: width: 100%; max-width: 180px; if needed */
+}
+
+/* Action Icons in File List */
+.file-list-area li .action-icon {
+  margin-left: 0.75rem; /* Standardized margin for action icons */
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: color 0.15s ease-in-out;
+}
+
+.file-list-area li .action-icon.rotate-icon {
+  color: #007bff; /* Primary blue for rotate */
+}
+.file-list-area li .action-icon.rotate-icon:hover {
+  color: #0056b3; /* Darker blue on hover */
+}
+
+.file-list-area li .action-icon.grayscale-icon {
+  color: #6c757d; /* Bootstrap secondary/gray for default state */
+}
+.file-list-area li .action-icon.grayscale-icon:hover {
+  color: #495057; /* Darker gray on hover */
+}
+.file-list-area li .action-icon.grayscale-icon.active {
+  color: #28a745; /* Bootstrap success green for active state */
+}
+.file-list-area li .action-icon.grayscale-icon.active:hover {
+  color: #1e7e34; /* Darker green for active state hover */
+}
+
+.file-list-area li .action-icon.fa-trash-o {
+ color: #dc3545;
+}
+.file-list-area li .action-icon.fa-trash-o:hover {
+ color: #a71d2a;
+}
+
+/* Output Format Select Styling */
+.output-format-select {
+  font-size: 0.8rem; /* Smaller font size */
+  padding: 0.2rem 0.4rem; /* Reduced padding */
+  height: auto; /* Auto height based on content and padding */
+  max-width: 80px; /* Limit width */
+  margin-right: 0.5rem; /* Space before next icon */
+  border-radius: 0.2rem;
+}
+
+
+/* ==========================================
+ * THUMBNAIL PREVIEW STYLES & FILE LIST ITEM LAYOUT
+ * ========================================== */
+
+/* Container for each file item in the list */
+.file-list-item-container {
+  display: flex;
+  justify-content: space-between; /* Pushes preview/name to left and actions to right */
+  align-items: center;
+  padding: 0.6rem 0.25rem;
+  border-bottom: 1px solid #e9ecef; 
+}
+.file-list-item-container:last-child {
+  border-bottom: none;
+}
+
+/* Contains thumbnail and filename */
+.file-item-preview-name {
+  display: flex;
+  align-items: center;
+  flex-grow: 1; /* Allows this section to take available space */
+  min-width: 0; /* Important for flex-grow to work with long filenames */
+}
+
+.thumbnail-preview {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 0.25rem;
+  margin-right: 1rem;
+  border: 1px solid #dee2e6;
+  flex-shrink: 0; /* Prevent thumbnail from shrinking */
+}
+
+.file-name { /* Renamed from .file-list-area li .file-name for clarity */
+  flex-grow: 1;
+  word-break: break-all;
+  margin-right: 0.5rem; /* Space before the actions block starts */
+  white-space: nowrap; /* Prevent wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for long names */
+}
+
+/* Contains all action elements (select + icons) */
+.file-item-actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; /* Prevent action group from shrinking */
+}
+
+
+@media (max-width: 767.98px) { /* Medium devices and below */
+  .file-list-item-container {
+    flex-direction: column; /* Stack preview/name and actions */
+    align-items: stretch; /* Make items take full width */
+  }
+  .file-item-preview-name {
+    margin-bottom: 0.5rem; /* Space between preview/name and actions when stacked */
+  }
+  .file-name {
+    white-space: normal; /* Allow wrapping on smaller screens */
+    overflow: visible;
+    text-overflow: clip;
+  }
+  .file-item-actions {
+    justify-content: flex-start; /* Align actions to the start */
+  }
+  .output-format-select {
+    max-width: 90px; /* Slightly more width if needed when stacked */
+  }
+}
+
+
+@media (max-width: 575.98px) {
+  .thumbnail-preview {
+    width: 40px;
+    height: 40px;
+    margin-right: 0.75rem;
+  }
+  .file-name {
+    font-size: 0.85rem;
+  }
+  .file-item-actions .action-icon { /* Target icons within actions block specifically */
+    margin-left: 0.4rem;
+    font-size: 0.95rem;
+  }
+  .output-format-select {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.3rem;
+  }
 }
