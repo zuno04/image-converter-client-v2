@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 import FileRenderDownload from "./components/FileRenderDownload";
@@ -25,15 +24,13 @@ function App() {
   };
 
   return (
-    <div id="top" className="container mt-5">
-      <div>
-        <header>
-          <h1>Welcome to Image reducer</h1>
-          <p>
-            Upload your images and reduce their size without loosing quality.
-          </p>
-        </header>
-      </div>
+    <div id="top" className="container mx-auto mt-5 p-4">
+      <header>
+        <h1 className="text-3xl font-bold mb-2">Welcome to Image reducer</h1>
+        <p className="text-gray-700 mb-4">
+          Upload your images and reduce their size without loosing quality.
+        </p>
+      </header>
 
       <PreferencesEditor 
         currentPreferences={preferences}
@@ -41,7 +38,7 @@ function App() {
         onClear={handleClearAppSettings}
       />
 
-      <div className="row mt-5">
+      <div className="flex flex-col md:flex-row gap-4 mt-5">
         {/* upload */}
         <FileUpload 
           setImages={setImages} 
